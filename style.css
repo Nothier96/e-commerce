@@ -1,0 +1,343 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background: #fff;
+  color: #000;
+  line-height: 1.6;
+}
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  min-height: 8vh;
+}
+.logo {
+  height: 70px;
+  width: 70px;
+  margin-bottom: 60px;
+}
+.logo img {
+  width: 100%;
+}
+nav {
+  flex: 1;
+  text-align: right;
+}
+nav ul {
+  display: inline;
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+  padding: 20px;
+}
+/* nav ul li a {
+  text-decoration: none;
+  color: #000;
+}
+nav ul li a:hover {
+  background-color: lightcoral;
+  border-radius: 50%;
+  color: aliceblue;
+} */
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  padding: 10px;
+}
+nav ul li a:hover {
+  background: rgb(146, 84, 45);
+  transition: 0.5s;
+  border-radius: 50%;
+  color: aliceblue;
+}
+.mobile {
+  display: none;
+}
+.mobile div {
+  width: 25px;
+  height: 5px;
+  background-color: #000;
+  margin: 5px;
+}
+.container {
+  max-width: 1199px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: 60px;
+}
+.slider {
+  position: relative; /* because we will position absoulte some stuff in the slider */
+  overflow: hidden;
+  height: 85vh;
+  width: 100%;
+}
+.slide {
+  position: absolute;
+  /*We will start from top left*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /*By default , to change with javascript */
+  transition: opacity 0.4s ease-in-out;
+}
+/*Because slide and current are assigned together*/
+.slide.current {
+  opacity: 1;
+}
+.slide .content {
+  position: absolute;
+  bottom: 70px;
+  left: -600px;
+  opacity: 0;
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 35px;
+}
+.slide .content h1 {
+  margin-bottom: 10px;
+}
+.slide.current .content {
+  opacity: 1;
+  transform: translateX(600px); /*Because it was -600px*/
+  transition: all 0.7s ease-in-out 0.3s;
+}
+.buttons button#next {
+  position: absolute;
+  top: 70%;
+  right: 15px;
+}
+.buttons button#prev {
+  position: absolute;
+  top: 70%;
+  left: 15px;
+}
+.buttons button {
+  border: 2px solid #000;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer; /*when hovering*/
+  padding: 13px 15px;
+  border-radius: 50%;
+  outline: none;
+}
+.buttons button:hover {
+  background-color: rgb(200, 37, 37);
+  color: #fff;
+}
+/*.categories img {
+  width: 300px;
+  height: 400px;
+}*/
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.categories figure:hover {
+  cursor: pointer;
+}
+.categories figure h3 {
+  text-align: center;
+}
+.bestseller {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.title-cat {
+  background-color: rgba(191, 230, 248, 0.858);
+  font-size: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.categories figure h3 {
+  text-align: center;
+  /* color: rgba(8, 160, 230, 0.858); */
+  text-transform: uppercase;
+  font-size: 20px;
+}
+@media screen and (max-width: 800px) {
+  /*This won't allow the overflow to be seen or the website to scroll horizontally*/
+  body {
+    overflow-x: hidden;
+  }
+  .navlink {
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    height: 50vh;
+    width: 25%;
+    top: 8vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+    padding-top: 40px;
+  }
+  .navlink li {
+    opacity: 0;
+  }
+  .mobile {
+    z-index: 2;
+    display: block;
+    cursor: pointer;
+    /* for the mobile animation*/
+    transition: all 0.3s ease;
+  }
+  /*Changing menu style when open to cross*/
+  .toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .toggle .line2 {
+    opacity: 0;
+  }
+  .toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  .nav-active {
+    /*Undo the tansform in the navlink*/
+    transform: translateX(0%);
+  }
+  @keyframes navlinkfade {
+    from {
+      opacity: 0;
+      transform: translate(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0px);
+    }
+  }
+  .categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .parent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 3em;
+  }
+  .parent figure {
+    margin-left: 200px;
+  }
+  .slide .content {
+    bottom: -300px;
+    left: 0;
+    width: 100%;
+  }
+  .slide.current .content {
+    transform: translateY(-300px);
+  }
+  .slider {
+    position: relative; /* because we will position absoulte some stuff in the slider */
+    overflow: hidden;
+    height: 80vh;
+    width: 100%;
+  }
+  .slide {
+    position: absolute;
+    /*We will start from top left*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /*By default , to change with javascript */
+    transition: opacity 0.4s ease-in-out;
+  }
+}
+
+/*background images with sudo selector*/
+.slide:first-child {
+  background: url("./images/img-1.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(2) {
+  background: url("./images/img-2.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(3) {
+  background: url("./images/product-6.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(4) {
+  background: url("./images/img-4.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(5) {
+  background: url("./images/img-5.jpg") no-repeat center center/cover;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding-right: 20px;
+  padding-top: 20px;
+  bottom: 0;
+}
+.copyright {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+}
+.social li {
+  display: inline-block;
+  padding: 20px 20px;
+}
+
+.social ul li a:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+  border-radius: 50%;
+}
+footer img {
+  width: 60px;
+  height: 60px;
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 60px;
+  text-decoration: none;
+  margin: 5px 30px;
+}
+.fa-linkedin {
+  background: white;
+  color: black;
+}
+.fa-facebook {
+  background: white;
+  color: black;
+}
+
+.fa-instagram {
+  background: white;
+  color: black;
+}
+.fa-star {
+  color: black;
+  margin: 0;
+  padding: 0;
+}
